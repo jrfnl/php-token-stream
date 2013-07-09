@@ -42,8 +42,12 @@
  * @since     File available since Release 1.1.0
  */
 
-spl_autoload_register(
-  function ($class)
+/**
+ * [JRF] Adjusted to allow for PHP < 5.3
+ */
+spl_autoload_register('PHP_TokenStream_Autoload');
+
+  function PHP_TokenStream_Autoload($class)
   {
       static $classes = NULL;
       static $path = NULL;;
@@ -223,4 +227,3 @@ spl_autoload_register(
           require $path . $classes[$cn];
       }
   }
-);
